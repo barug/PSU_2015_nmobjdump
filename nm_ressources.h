@@ -5,7 +5,7 @@
 // Login   <barthe_g@epitech.net>
 // 
 // Started on  Tue Feb 16 11:01:19 2016 Barthelemy Gouby
-// Last update Tue Feb 16 19:49:35 2016 Barthelemy Gouby
+// Last update Thu Feb 18 12:12:46 2016 Barthelemy Gouby
 //
 
 #ifndef _MY_NM
@@ -42,5 +42,9 @@ typedef struct	s_sym
   char		*name;
   uint64_t	value;
 }		t_sym;
+
+void		*open_file(char *file_path);
+int		analyse_file_data(void	*data, t_arguments *arguments);
+
 
 #endif /* !_MY_NM */
