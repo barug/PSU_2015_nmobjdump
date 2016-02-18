@@ -5,7 +5,7 @@
 ** Login   <barthe_g@epitech.net>
 ** 
 ** Started on  Thu Feb 18 12:08:32 2016 Barthelemy Gouby
-** Last update Thu Feb 18 12:08:57 2016 Barthelemy Gouby
+** Last update Thu Feb 18 13:50:13 2016 Barthelemy Gouby
 */
 
 #include "nm_ressources.h"
@@ -46,7 +46,7 @@ t_sym_info	get_symboles_info(void	*data)
 
   i = 0;
   header = (Elf64_Ehdr*) data;
-  section_header_table = data + header->e_shoff;
+  sym_info.shdr = section_header_table = data + header->e_shoff;
   section_names = data + section_header_table[header->e_shstrndx].sh_offset;
   while (i < header->e_shnum)
     {
@@ -85,6 +85,24 @@ int		compare_symboles_names(const void *sym1, const void *sym2, void *sym_info)
   return (strcasecmp(&(name1[j]), &(name2[k])));
 }
 
+void		display_symbols(Elf64_Sym *sym_tab, t_sym_info *sym_info, int tab_length)
+{
+  int		i;
+
+  i = 0;
+  while (i < tab_length)
+    {
+      if (sym_tab[i].st_value)
+	printf("%016x %c %s\n", (unsigned int) sym_tab[i].st_value,
+	       get_symbol_type(&(sym_tab[i]), sym_info),
+	       sym_info->symbol_names + sym_tab[i].st_name);
+      else
+	printf("%16c %c %s\n", ' ', get_symbol_type(&(sym_tab[i]), sym_info),
+	       sym_info->symbol_names + sym_tab[i].st_name);
+      i++;
+    }
+}
+
 int		analyse_file_data(void	*data, t_arguments *arguments)
 {
   t_sym_info	sym_info;
@@ -106,16 +124,7 @@ int		analyse_file_data(void	*data, t_arguments *arguments)
       i++;
     }
   qsort_r(sym_sort_tab, j, sym_info.st_entry_size, compare_symboles_names, &sym_info);
-  i = 0;
-  while (i < j)
-    {
-      if (sym_sort_tab[i].st_value)
-	printf("%016x %s\n",(unsigned int) sym_sort_tab[i].st_value,
-	       sym_info.symbol_names + sym_sort_tab[i].st_name);
-      else
-	printf("%16c %s\n",' ' , sym_info.symbol_names + sym_sort_tab[i].st_name);
-      i++;
-    }
+  display_symbols(sym_sort_tab, &sym_info, j);
   (void) arguments;
   return (0);
 }

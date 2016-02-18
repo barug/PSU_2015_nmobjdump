@@ -5,7 +5,7 @@
 ## Login   <barthe_g@epitech.net>
 ## 
 ## Started on  Tue Feb 16 09:43:25 2016 Barthelemy Gouby
-## Last update Thu Feb 18 12:11:44 2016 Barthelemy Gouby
+## Last update Thu Feb 18 13:18:52 2016 Barthelemy Gouby
 ##
 
 CC	= gcc
@@ -17,6 +17,7 @@ NAME1	= my_nm
 NAME2	= my_objdump
 
 SRCS1	= nm_process_file.c	\
+	  nm_symbol_types.c	\
 	  main_nm.c
 
 SRCS2	= main_obdump.c

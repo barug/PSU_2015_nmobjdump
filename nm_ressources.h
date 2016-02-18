@@ -5,7 +5,7 @@
 // Login   <barthe_g@epitech.net>
 // 
 // Started on  Tue Feb 16 11:01:19 2016 Barthelemy Gouby
-// Last update Thu Feb 18 12:12:46 2016 Barthelemy Gouby
+// Last update Thu Feb 18 13:42:09 2016 Barthelemy Gouby
 //
 
 #ifndef _MY_NM
@@ -30,6 +30,7 @@ typedef struct	s_arguments
 
 typedef struct	s_sym_info
 {
+  Elf64_Shdr	*shdr;
   char		*symbol_names;
   Elf64_Sym	*symbol_table;
   size_t	st_entry_size;
@@ -37,14 +38,16 @@ typedef struct	s_sym_info
   size_t	st_length;
 }		t_sym_info;
 
-typedef struct	s_sym
+typedef struct	s_sym_type_test
 {
-  char		*name;
-  uint64_t	value;
-}		t_sym;
+  int		(*test_type)(Elf64_Sym *sym);
+  char		type_char;
+}		t_sym_type_test;
 
 void		*open_file(char *file_path);
 int		analyse_file_data(void	*data, t_arguments *arguments);
+char		get_symbol_type(Elf64_Sym *sym, t_sym_info *sym_info);
+
 
 
 #endif /* !_MY_NM */
