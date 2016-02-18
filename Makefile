@@ -5,7 +5,7 @@
 ## Login   <barthe_g@epitech.net>
 ## 
 ## Started on  Tue Feb 16 09:43:25 2016 Barthelemy Gouby
-## Last update Thu Feb 18 13:18:52 2016 Barthelemy Gouby
+## Last update Thu Feb 18 13:59:26 2016 Barthelemy Gouby
 ##
 
 CC	= gcc
@@ -18,9 +18,9 @@ NAME2	= my_objdump
 
 SRCS1	= nm_process_file.c	\
 	  nm_symbol_types.c	\
-	  main_nm.c
+	  main.c
 
-SRCS2	= main_obdump.c
+SRCS2	= main.c
 
 OBJS1	= $(SRCS1:.c=.o)
 
@@ -36,7 +36,8 @@ objdump: $(OBJS2)
 
 all: nm objdump
 
-clean: $(RM) $(OBJS1) $(OBJS2)
+clean:
+	 $(RM) $(OBJS1) $(OBJS2)
 
 fclean: clean
 	$(RM) $(NAME1) $(NAME2)

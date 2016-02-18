@@ -5,36 +5,10 @@
 ** Login   <barthe_g@epitech.net>
 ** 
 ** Started on  Thu Feb 18 12:08:32 2016 Barthelemy Gouby
-** Last update Thu Feb 18 13:50:13 2016 Barthelemy Gouby
+** Last update Thu Feb 18 14:45:08 2016 Barthelemy Gouby
 */
 
 #include "nm_ressources.h"
-
-void		*open_file(char *file_path)
-{
-  int		fd;
-  void		*data;
-  struct stat	file_infos;
-
-  if ((fd = open(file_path, O_RDONLY)) == -1)
-    return (NULL);
-  if (fstat(fd, &file_infos) == -1)
-    return (NULL);
-  if ((data = mmap(NULL, file_infos.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) == (void*) -1)
-    return (NULL);
-  return (data);
-}
-
-int check_header_type(Elf64_Ehdr * data)
-{
-  if (data->e_ident[EI_MAG0] != ELFMAG0 ||
-      data->e_ident[EI_MAG1] != ELFMAG1 ||
-      data->e_ident[EI_MAG2] != ELFMAG2 ||
-      data->e_ident[EI_MAG3] != ELFMAG3 ||
-      data->e_ident[EI_CLASS] != ELFCLASS64)
-    return (-1);
-  return (0);
-}
 
 t_sym_info	get_symboles_info(void	*data)
 {
@@ -112,8 +86,6 @@ int		analyse_file_data(void	*data, t_arguments *arguments)
 
   i = 0;
   j = 0;
-  if (check_header_type((Elf64_Ehdr*) data) == -1)
-    return (-1);
   sym_info = get_symboles_info(data);
   if ((sym_sort_tab = malloc((sym_info.st_length * sizeof(*sym_sort_tab)))) == NULL)
     return (-1);

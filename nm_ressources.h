@@ -5,7 +5,7 @@
 // Login   <barthe_g@epitech.net>
 // 
 // Started on  Tue Feb 16 11:01:19 2016 Barthelemy Gouby
-// Last update Thu Feb 18 13:42:09 2016 Barthelemy Gouby
+// Last update Thu Feb 18 14:44:29 2016 Barthelemy Gouby
 //
 
 #ifndef _MY_NM
@@ -44,7 +44,6 @@ typedef struct	s_sym_type_test
   char		type_char;
 }		t_sym_type_test;
 
-void		*open_file(char *file_path);
 int		analyse_file_data(void	*data, t_arguments *arguments);
 char		get_symbol_type(Elf64_Sym *sym, t_sym_info *sym_info);
 
