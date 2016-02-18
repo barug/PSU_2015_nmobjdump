@@ -5,12 +5,12 @@
 ** Login   <barthe_g@epitech.net>
 ** 
 ** Started on  Thu Feb 18 12:08:32 2016 Barthelemy Gouby
-** Last update Thu Feb 18 14:45:08 2016 Barthelemy Gouby
+** Last update Thu Feb 18 15:13:00 2016 Barthelemy Gouby
 */
 
 #include "nm_ressources.h"
 
-t_sym_info	get_symboles_info(void	*data)
+t_sym_info	get_symboles_info(void *data)
 {
   Elf64_Ehdr	*header;
   Elf64_Shdr	*section_header_table;
@@ -20,7 +20,8 @@ t_sym_info	get_symboles_info(void	*data)
 
   i = 0;
   header = (Elf64_Ehdr*) data;
-  sym_info.shdr = section_header_table = data + header->e_shoff;
+  section_header_table = data + header->e_shoff;
+  sym_info.shdr = section_header_table;
   section_names = data + section_header_table[header->e_shstrndx].sh_offset;
   while (i < header->e_shnum)
     {
