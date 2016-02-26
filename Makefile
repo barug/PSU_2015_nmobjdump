@@ -5,7 +5,7 @@
 ## Login   <barthe_g@epitech.net>
 ## 
 ## Started on  Tue Feb 16 09:43:25 2016 Barthelemy Gouby
-## Last update Thu Feb 18 16:27:09 2016 Barthelemy Gouby
+## Last update Fri Feb 26 12:25:18 2016 Barthelemy Gouby
 ##
 
 CC	= gcc
@@ -31,13 +31,13 @@ OBJS2	= $(SRCS2:.c=.o)
 
 CFLAGS 	= -Wall -Werror -Wextra
 
+all: nm objdump
+
 nm: $(OBJS1)
 	$(CC) -o $(NAME1) $(OBJS1) $(CFLAGS)
 
 objdump: $(OBJS2)
 	$(CC) -o $(NAME2) $(OBJS2) $(CFLAGS)
-
-all: nm objdump
 
 clean:
 	 $(RM) $(OBJS1) $(OBJS2)

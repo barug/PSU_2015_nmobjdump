@@ -5,7 +5,7 @@
 ** Login   <barthe_g@epitech.net>
 ** 
 ** Started on  Thu Feb 18 13:57:37 2016 Barthelemy Gouby
-** Last update Thu Feb 18 16:20:39 2016 Barthelemy Gouby
+** Last update Fri Feb 26 12:06:26 2016 Barthelemy Gouby
 */
 
 #include "objdump_ressources.h"
@@ -21,6 +21,7 @@ int		main(int argc, char **argv)
     return (-1);
   while (arguments.file_paths[i])
     {
+      printf("\n%s:\n", arguments.file_paths[i]);
       if((current_file_data = open_file(arguments.file_paths[i++])) == NULL)
 	return (-1);
       if (check_header_type((Elf64_Ehdr*) current_file_data) == -1)

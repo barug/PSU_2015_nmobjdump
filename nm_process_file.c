@@ -5,7 +5,7 @@
 ** Login   <barthe_g@epitech.net>
 ** 
 ** Started on  Thu Feb 18 12:08:32 2016 Barthelemy Gouby
-** Last update Thu Feb 18 15:13:00 2016 Barthelemy Gouby
+** Last update Fri Feb 19 18:29:24 2016 Barthelemy Gouby
 */
 
 #include "nm_ressources.h"
@@ -92,7 +92,7 @@ int		analyse_file_data(void	*data, t_arguments *arguments)
     return (-1);
   while (i < sym_info.st_length)
     {
-      if (sym_info.symbol_table[i].st_name)
+      if (sym_info.symbol_table[i].st_name && sym_info.symbol_table[i].st_info != 4)
 	sym_sort_tab[j++] = sym_info.symbol_table[i];
       i++;
     }
