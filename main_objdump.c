@@ -5,7 +5,7 @@
 ** Login   <barthe_g@epitech.net>
 ** 
 ** Started on  Thu Feb 18 13:57:37 2016 Barthelemy Gouby
-** Last update Fri Feb 26 12:06:26 2016 Barthelemy Gouby
+** Last update Fri Feb 26 18:53:39 2016 Barthelemy Gouby
 */
 
 #include "objdump_ressources.h"
@@ -21,13 +21,20 @@ int		main(int argc, char **argv)
     return (-1);
   while (arguments.file_paths[i])
     {
-      printf("\n%s:\n", arguments.file_paths[i]);
-      if((current_file_data = open_file(arguments.file_paths[i++])) == NULL)
-	return (-1);
-      if (check_header_type((Elf64_Ehdr*) current_file_data) == -1)
-	return (-1);
-      if (analyse_file_data(current_file_data, &arguments) == -1)
-      	return (-1);
+      if (access(arguments.file_paths[i], F_OK) == -1)
+	printf("nm: '%s': No such file\n", arguments.file_paths[i]);
+      else
+	{
+	  if (arguments.number_of_files > 1)
+	    printf("\n%s:\n", arguments.file_paths[i]);
+	  if ((current_file_data = open_file(arguments.file_paths[i])) == NULL)
+	    return (-1);
+	  if (check_header_type((Elf64_Ehdr*) current_file_data) == -1)
+	    return (-1);
+	  if (analyse_file_data(current_file_data, &arguments) == -1)
+	    return (-1);
+	}
+      i++;
     }
   return (0);
 }

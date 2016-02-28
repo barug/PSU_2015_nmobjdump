@@ -5,31 +5,22 @@
 ** Login   <barthe_g@epitech.net>
 ** 
 ** Started on  Thu Feb 18 14:33:13 2016 Barthelemy Gouby
-** Last update Thu Feb 18 19:42:50 2016 Barthelemy Gouby
+** Last update Fri Feb 26 17:46:43 2016 Barthelemy Gouby
 */
 
 #include "objdump_ressources.h"
 
 char		*get_architecture(int type)
 {
-  t_arch_type	types[20] = {{EM_NONE, "Unknown"},
-			     {EM_M32, "WE 32100"},
-			     {EM_SPARC, "SPARC"},
-			     {EM_386, "i386"},
-			     {EM_68K, "m68k"},
-			     {EM_88K, "m88k"},
-			     {EM_860, "i860"},
-			     {EM_MIPS, "MIPS RS3000"},
-			     {EM_PARISC, "hp/pa"},
-			     {EM_SPARC32PLUS, "SPARC +"},
-			     {EM_PPC, "PowerPC"},
-			     {EM_PPC64, "PowerPC64"},
-			     {EM_S390, "IBM S/390"},
-			     {EM_ARM, "ARM"},
-			     {EM_SH, "superH"},
-			     {EM_SPARCV9, "SPARCV9"},
-			     {EM_IA_64, "IA-64"},
-			     {EM_X86_64, "AMD64"},
+  t_arch_type	types[20] = {{EM_NONE, "Unknown"}, {EM_M32, "WE 32100"},
+			     {EM_SPARC, "SPARC"}, {EM_386, "i386"},
+			     {EM_68K, "m68k"}, {EM_88K, "m88k"},
+			     {EM_860, "i860"}, {EM_MIPS, "MIPS RS3000"},
+			     {EM_PARISC, "hp/pa"}, {EM_SPARC32PLUS, "SPARC +"},
+			     {EM_PPC, "PowerPC"}, {EM_PPC64, "PowerPC64"},
+			     {EM_S390, "IBM S/390"}, {EM_ARM, "ARM"},
+			     {EM_SH, "superH"}, {EM_SPARCV9, "SPARCV9"},
+			     {EM_IA_64, "IA-64"}, {EM_X86_64, "AMD64"},
 			     {EM_VAX, "VAX"}};  
   int		i;
 
@@ -47,7 +38,7 @@ void		display_header_info(Elf64_Ehdr *header)
 {  
   printf("file format elf64-x86-64\n");
   printf("architecture: %s, ", get_architecture(header->e_machine));
-  printf("flags: 0x%08x\n", (unsigned int) header->e_flags);
+  printf("flags: 0x%08x\n",  header->e_type);
   printf("start adress Ox%x016x\n\n", (unsigned int) header->e_entry);
 }
 
@@ -95,11 +86,6 @@ void		display_section(Elf64_Shdr *section, char *section_names, void *data)
       i += j;
     }
 }
-
-      /* printf("%04x %08x %08x %08x %08x\n", (unsigned int) (section->sh_addr + i), */
-      /* 	     *((unsigned int*) section_data + i), */
-      /* 	     *((unsigned int*) section_data + i + 4), *((unsigned int*) section_data + i + 8), */
-      /* 	     *((unsigned int*) section_data + i + 12)); */
 
 void		display_all_sections(void *data)
 {

@@ -5,14 +5,15 @@
 // Login   <barthe_g@epitech.net>
 // 
 // Started on  Tue Feb 16 11:01:19 2016 Barthelemy Gouby
-// Last update Thu Feb 18 16:19:11 2016 Barthelemy Gouby
+// Last update Fri Feb 26 18:54:13 2016 Barthelemy Gouby
 //
 
-#ifndef _MY_NM
-# define _MY_NM
+#ifndef _MY_NM_
+# define _MY_NM_
 
 #define _GNU_SOURCE
 
+#include <unistd.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -26,6 +27,7 @@
 typedef struct	s_arguments
 {
   char		**file_paths;
+  size_t	number_of_files;
 }		t_arguments;
 
 typedef struct	s_sym_info
@@ -50,4 +52,15 @@ void		*open_file(char *file_path);
 int		check_header_type(Elf64_Ehdr * data);
 int		get_arguments(int argc, char **argv, t_arguments *arguments);
 
-#endif /* !_MY_NM */
+char		test_unique(Elf64_Sym *sym, Elf64_Shdr *shdr);
+char		test_unspecific_weak(Elf64_Sym *sym, Elf64_Shdr *shdr);
+char		test_weak(Elf64_Sym *sym, Elf64_Shdr *shdr);
+char		test_undef(Elf64_Sym *sym, Elf64_Shdr *shdr);
+char		test_absolute(Elf64_Sym *sym, Elf64_Shdr *shdr);
+char		test_common(Elf64_Sym *sym, Elf64_Shdr *shdr);
+char		test_uninitialized(Elf64_Sym *sym, Elf64_Shdr *shdr);
+char		test_readonly(Elf64_Sym *sym, Elf64_Shdr *shdr);
+char		test_initialized(Elf64_Sym *sym, Elf64_Shdr *shdr);
+char		test_text(Elf64_Sym *sym, Elf64_Shdr *shdr);
+
+#endif /* !_MY_NM_ */

@@ -5,7 +5,7 @@
 ## Login   <barthe_g@epitech.net>
 ## 
 ## Started on  Tue Feb 16 09:43:25 2016 Barthelemy Gouby
-## Last update Fri Feb 26 12:25:18 2016 Barthelemy Gouby
+## Last update Fri Feb 26 17:54:07 2016 Barthelemy Gouby
 ##
 
 CC	= gcc
@@ -18,6 +18,8 @@ NAME2	= my_objdump
 
 SRCS1	= nm_process_file.c	\
 	  nm_symbol_types.c	\
+	  nm_symbol_types2.c	\
+	  nm_symbol_types3.c	\
 	  misc.c		\
 	  main_nm.c
 
@@ -30,6 +32,8 @@ OBJS1	= $(SRCS1:.c=.o)
 OBJS2	= $(SRCS2:.c=.o)
 
 CFLAGS 	= -Wall -Werror -Wextra
+
+.PHONY: nm objdump all clean fclean re
 
 all: nm objdump
 
@@ -46,5 +50,3 @@ fclean: clean
 	$(RM) $(NAME1) $(NAME2)
 
 re: fclean all
-
-.PHONY: nm objdump all clean fclean re

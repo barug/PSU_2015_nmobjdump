@@ -5,7 +5,7 @@
 // Login   <barthe_g@epitech.net>
 // 
 // Started on  Thu Feb 18 15:15:43 2016 Barthelemy Gouby
-// Last update Thu Feb 18 18:54:25 2016 Barthelemy Gouby
+// Last update Fri Feb 26 16:49:05 2016 Barthelemy Gouby
 //
 
 #ifndef _OBJDUMP
@@ -25,6 +25,7 @@
 typedef struct	s_arguments
 {
   char		**file_paths;
+  size_t	number_of_files;
 }		t_arguments;
 
 typedef struct	s_arch_type

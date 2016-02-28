@@ -5,10 +5,16 @@
 ** Login   <barthe_g@epitech.net>
 ** 
 ** Started on  Thu Feb 18 12:08:32 2016 Barthelemy Gouby
-** Last update Fri Feb 19 18:29:24 2016 Barthelemy Gouby
+** Last update Sun Feb 28 20:34:53 2016 Barthelemy Gouby
 */
 
 #include "nm_ressources.h"
+
+int		check_name(char *section_names, Elf64_Shdr *section_header,
+			   char *name)
+{
+  return (strcmp(section_names + section_header->sh_name, name));
+}
 
 t_sym_info	get_symboles_info(void *data)
 {
@@ -25,9 +31,9 @@ t_sym_info	get_symboles_info(void *data)
   section_names = data + section_header_table[header->e_shstrndx].sh_offset;
   while (i < header->e_shnum)
     {
-      if (strcmp(section_names + section_header_table[i].sh_name, ".strtab") == 0)
+      if (check_name(section_names ,&(section_header_table[i]), ".strtab") == 0)
 	sym_info.symbol_names = data + section_header_table[i].sh_offset;
-      if (strcmp(section_names + section_header_table[i].sh_name, ".symtab") == 0)
+      if (check_name(section_names ,&(section_header_table[i]), ".symtab") == 0)
 	{
 	  sym_info.symbol_table = data + section_header_table[i].sh_offset;
 	  sym_info.st_entry_size = section_header_table[i].sh_entsize;
@@ -48,8 +54,10 @@ int		compare_symboles_names(const void *sym1, const void *sym2, void *sym_info)
   char		*name2;
 
   i = 0;
-  name1 = ((t_sym_info*)(sym_info))->symbol_names +  ((Elf64_Sym*)(sym1))->st_name;
-  name2 = ((t_sym_info*)(sym_info))->symbol_names +  ((Elf64_Sym*)(sym2))->st_name;
+  name1 = ((t_sym_info*)(sym_info))->symbol_names +
+    ((Elf64_Sym*)(sym1))->st_name;
+  name2 = ((t_sym_info*)(sym_info))->symbol_names +
+    ((Elf64_Sym*)(sym2))->st_name;
   while (i < strlen(name1) && !isalpha(name1[i]))
     i++;
   j = i;
@@ -88,15 +96,18 @@ int		analyse_file_data(void	*data, t_arguments *arguments)
   i = 0;
   j = 0;
   sym_info = get_symboles_info(data);
-  if ((sym_sort_tab = malloc((sym_info.st_length * sizeof(*sym_sort_tab)))) == NULL)
+  if ((sym_sort_tab = malloc((sym_info.st_length
+			      * sizeof(*sym_sort_tab)))) == NULL)
     return (-1);
   while (i < sym_info.st_length)
     {
-      if (sym_info.symbol_table[i].st_name && sym_info.symbol_table[i].st_info != 4)
+      if (sym_info.symbol_table[i].st_name &&
+	  sym_info.symbol_table[i].st_info != 4)
 	sym_sort_tab[j++] = sym_info.symbol_table[i];
       i++;
     }
-  qsort_r(sym_sort_tab, j, sym_info.st_entry_size, compare_symboles_names, &sym_info);
+  qsort_r(sym_sort_tab, j, sym_info.st_entry_size,
+	  compare_symboles_names, &sym_info);
   display_symbols(sym_sort_tab, &sym_info, j);
   (void) arguments;
   return (0);
