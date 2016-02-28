@@ -1,11 +1,11 @@
 //
 // objdump_ressources.h for objdump in /home/barthe_g/rendu/tek2/unix_memoire/PSU_2015_nmobjdump
-// 
+//
 // Made by Barthelemy Gouby
 // Login   <barthe_g@epitech.net>
-// 
+//
 // Started on  Thu Feb 18 15:15:43 2016 Barthelemy Gouby
-// Last update Fri Feb 26 16:49:05 2016 Barthelemy Gouby
+// Last update Sun Feb 28 22:01:48 2016 Barthelemy Gouby
 //
 
 #ifndef _OBJDUMP
@@ -38,5 +38,6 @@ void		*open_file(char *file_path);
 int		check_header_type(Elf64_Ehdr * data);
 int		analyse_file_data(void	*data, t_arguments *arguments);
 int		get_arguments(int argc, char **argv, t_arguments *arguments);
+char		*get_architecture(int type);
 
 #endif /* !_OBJDUMP */

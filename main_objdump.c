@@ -5,7 +5,7 @@
 ** Login   <barthe_g@epitech.net>
 ** 
 ** Started on  Thu Feb 18 13:57:37 2016 Barthelemy Gouby
-** Last update Fri Feb 26 18:53:39 2016 Barthelemy Gouby
+** Last update Sun Feb 28 21:37:13 2016 Barthelemy Gouby
 */
 
 #include "objdump_ressources.h"
@@ -22,7 +22,7 @@ int		main(int argc, char **argv)
   while (arguments.file_paths[i])
     {
       if (access(arguments.file_paths[i], F_OK) == -1)
-	printf("nm: '%s': No such file\n", arguments.file_paths[i]);
+	printf("objdump: '%s': No such file\n", arguments.file_paths[i]);
       else
 	{
 	  if (arguments.number_of_files > 1)

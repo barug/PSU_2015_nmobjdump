@@ -5,7 +5,7 @@
 ## Login   <barthe_g@epitech.net>
 ## 
 ## Started on  Tue Feb 16 09:43:25 2016 Barthelemy Gouby
-## Last update Fri Feb 26 17:54:07 2016 Barthelemy Gouby
+## Last update Sun Feb 28 22:03:39 2016 Barthelemy Gouby
 ##
 
 CC	= gcc
@@ -16,14 +16,15 @@ NAME1	= my_nm
 
 NAME2	= my_objdump
 
-SRCS1	= nm_process_file.c	\
-	  nm_symbol_types.c	\
-	  nm_symbol_types2.c	\
-	  nm_symbol_types3.c	\
-	  misc.c		\
+SRCS1	= nm_process_file.c		\
+	  nm_symbol_types.c		\
+	  nm_symbol_types2.c		\
+	  nm_symbol_types3.c		\
+	  misc.c			\
 	  main_nm.c
 
 SRCS2	= objdump_process_file.c	\
+	  objdump_architecture.c	\
 	  misc.c			\
 	  main_objdump.c
 
